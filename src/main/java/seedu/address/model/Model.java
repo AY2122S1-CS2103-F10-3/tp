@@ -14,6 +14,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Person> PREDICATE_HIDE_ALL_PERSONS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -62,6 +65,12 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Hides all persons.
+     *
+     */
+    void hideAllPersons();
 
     /**
      * Adds the given person.
