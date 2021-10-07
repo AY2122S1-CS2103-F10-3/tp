@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.friendbook.commons.core.GuiSettings;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Friend> PREDICATE_SHOW_ALL_FRIENDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyFriendBook getFriendBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the friend book.
+     * Returns true if a friend with the same identity as {@code friend} exists in the friend book.
      */
-    boolean hasPerson(Person person);
+    boolean hasFriend(Friend friend);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the friend book.
+     * Deletes the given friend.
+     * The friend must exist in the friend book.
      */
-    void deletePerson(Person target);
+    void deleteFriend(Friend target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the friend book.
+     * Adds the given friend.
+     * {@code friend} must not already exist in the friend book.
      */
-    void addPerson(Person person);
+    void addFriend(Friend friend);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given friend {@code target} with {@code editedFriend}.
      * {@code target} must exist in the friend book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the friend book.
+     * The friend identity of {@code editedFriend} must not be the same as another existing friend in the friend book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setFriend(Friend target, Friend editedFriend);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered friend list */
+    ObservableList<Friend> getFilteredFriendList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered friend list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredFriendList(Predicate<Friend> predicate);
 }

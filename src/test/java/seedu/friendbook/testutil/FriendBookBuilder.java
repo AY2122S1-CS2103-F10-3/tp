@@ -1,7 +1,7 @@
 package seedu.friendbook.testutil;
 
 import seedu.friendbook.model.FriendBook;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * A utility class to help with building Friendbook objects.
@@ -21,10 +21,10 @@ public class FriendBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code FriendBook} that we are building.
+     * Adds a new {@code Friend} to the {@code FriendBook} that we are building.
      */
-    public FriendBookBuilder withPerson(Person person) {
-        friendBook.addPerson(person);
+    public FriendBookBuilder withPerson(Friend friend) {
+        friendBook.addFriend(friend);
         return this;
     }
 

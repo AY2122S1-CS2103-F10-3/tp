@@ -10,20 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.friendbook.commons.exceptions.IllegalValueException;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Birthday;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.*;
 import seedu.friendbook.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Friend}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedFriend {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Friend's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -33,13 +28,13 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedFriend} with the given friend details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("birthday") String birthday) {
+    public JsonAdaptedFriend(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("birthday") String birthday) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,9 +46,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Friend} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedFriend(Friend source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -65,11 +60,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted friend object into the model's {@code Friend} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted friend.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Friend toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -117,7 +112,7 @@ class JsonAdaptedPerson {
         final Birthday modelBirthday = new Birthday(birthday);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelBirthday);
+        return new Friend(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelBirthday);
     }
 
 }

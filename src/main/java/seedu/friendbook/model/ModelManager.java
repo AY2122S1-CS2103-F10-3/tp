@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.friendbook.commons.core.GuiSettings;
 import seedu.friendbook.commons.core.LogsCenter;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * Represents the in-memory model of the friend book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final FriendBook friendBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Friend> filteredFriends;
 
     /**
      * Initializes a ModelManager with the given friendBook and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.friendBook = new FriendBook(friendBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.friendBook.getPersonList());
+        filteredFriends = new FilteredList<>(this.friendBook.getFriendList());
     }
 
     public ModelManager() {
@@ -89,44 +89,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return friendBook.hasPerson(person);
+    public boolean hasFriend(Friend friend) {
+        requireNonNull(friend);
+        return friendBook.hasFriend(friend);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        friendBook.removePerson(target);
+    public void deleteFriend(Friend target) {
+        friendBook.removeFriend(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        friendBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addFriend(Friend friend) {
+        friendBook.addFriend(friend);
+        updateFilteredFriendList(PREDICATE_SHOW_ALL_FRIENDS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setFriend(Friend target, Friend editedFriend) {
+        requireAllNonNull(target, editedFriend);
 
-        friendBook.setPerson(target, editedPerson);
+        friendBook.setFriend(target, editedFriend);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Friend List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Friend} backed by the internal list of
      * {@code versionedFriendBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Friend> getFilteredFriendList() {
+        return filteredFriends;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredFriendList(Predicate<Friend> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredFriends.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return friendBook.equals(other.friendBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredFriends.equals(other.filteredFriends);
     }
 
 }

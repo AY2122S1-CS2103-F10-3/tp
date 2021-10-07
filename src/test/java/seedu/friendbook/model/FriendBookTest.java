@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.exceptions.DuplicatePersonException;
+import seedu.friendbook.model.friend.Friend;
+import seedu.friendbook.model.friend.exceptions.DuplicateFriendException;
 import seedu.friendbook.testutil.PersonBuilder;
 
 public class FriendBookTest {
@@ -45,37 +45,37 @@ public class FriendBookTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        // Two friends with the same identity fields
+        Friend editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        FriendBookStub newData = new FriendBookStub(newPersons);
+        List<Friend> newFriends = Arrays.asList(ALICE, editedAlice);
+        FriendBookStub newData = new FriendBookStub(newFriends);
 
-        assertThrows(DuplicatePersonException.class, () -> friendBook.resetData(newData));
+        assertThrows(DuplicateFriendException.class, () -> friendBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> friendBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> friendBook.hasFriend(null));
     }
 
     @Test
     public void hasPerson_personNotInFriendBook_returnsFalse() {
-        assertFalse(friendBook.hasPerson(ALICE));
+        assertFalse(friendBook.hasFriend(ALICE));
     }
 
     @Test
     public void hasPerson_personInFriendBook_returnsTrue() {
-        friendBook.addPerson(ALICE);
-        assertTrue(friendBook.hasPerson(ALICE));
+        friendBook.addFriend(ALICE);
+        assertTrue(friendBook.hasFriend(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInFriendBook_returnsTrue() {
-        friendBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        friendBook.addFriend(ALICE);
+        Friend editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(friendBook.hasPerson(editedAlice));
+        assertTrue(friendBook.hasFriend(editedAlice));
     }
 
     @Test
@@ -84,18 +84,18 @@ public class FriendBookTest {
     }
 
     /**
-     * A stub ReadOnlyFriendBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyFriendBook whose friends list can violate interface constraints.
      */
     private static class FriendBookStub implements ReadOnlyFriendBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Friend> friends = FXCollections.observableArrayList();
 
-        FriendBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        FriendBookStub(Collection<Friend> friends) {
+            this.friends.setAll(friends);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Friend> getPersonList() {
+            return friends;
         }
     }
 

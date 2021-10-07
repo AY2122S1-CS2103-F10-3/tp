@@ -14,7 +14,7 @@ import seedu.friendbook.logic.parser.FriendBookParser;
 import seedu.friendbook.logic.parser.exceptions.ParseException;
 import seedu.friendbook.model.Model;
 import seedu.friendbook.model.ReadOnlyFriendBook;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 import seedu.friendbook.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Friend> getFilteredFriendList() {
+        return model.getFilteredFriendList();
     }
 
     @Override

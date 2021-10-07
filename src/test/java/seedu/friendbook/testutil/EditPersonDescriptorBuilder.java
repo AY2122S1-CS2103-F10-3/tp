@@ -5,12 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Birthday;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.*;
+import seedu.friendbook.model.friend.Friend;
 import seedu.friendbook.model.tag.Tag;
 
 /**
@@ -29,16 +25,16 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code friend}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Friend friend) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setBirthday(person.getBirthday());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(friend.getName());
+        descriptor.setPhone(friend.getPhone());
+        descriptor.setEmail(friend.getEmail());
+        descriptor.setAddress(friend.getAddress());
+        descriptor.setBirthday(friend.getBirthday());
+        descriptor.setTags(friend.getTags());
     }
 
     /**

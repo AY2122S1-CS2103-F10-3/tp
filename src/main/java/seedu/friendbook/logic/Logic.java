@@ -8,7 +8,7 @@ import seedu.friendbook.logic.commands.CommandResult;
 import seedu.friendbook.logic.commands.exceptions.CommandException;
 import seedu.friendbook.logic.parser.exceptions.ParseException;
 import seedu.friendbook.model.ReadOnlyFriendBook;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyFriendBook getFriendBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of friends */
+    ObservableList<Friend> getFilteredFriendList();
 
     /**
      * Returns the user prefs' friend book file path.

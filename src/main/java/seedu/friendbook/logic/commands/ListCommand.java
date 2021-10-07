@@ -1,7 +1,7 @@
 package seedu.friendbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.friendbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.friendbook.model.Model.PREDICATE_SHOW_ALL_FRIENDS;
 
 import seedu.friendbook.model.Model;
 
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredFriendList(PREDICATE_SHOW_ALL_FRIENDS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

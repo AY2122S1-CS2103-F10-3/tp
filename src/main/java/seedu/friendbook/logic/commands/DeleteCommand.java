@@ -8,21 +8,21 @@ import seedu.friendbook.commons.core.Messages;
 import seedu.friendbook.commons.core.index.Index;
 import seedu.friendbook.logic.commands.exceptions.CommandException;
 import seedu.friendbook.model.Model;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
- * Deletes a person identified using it's displayed index from the friend book.
+ * Deletes a friend identified using it's displayed index from the friend book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the friend identified by the index number used in the displayed friend list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Friend: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Friend> lastShownList = model.getFilteredFriendList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FRIEND_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Friend friendToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteFriend(friendToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, friendToDelete));
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.friendbook.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonDescriptorTest {
+public class EditFriendDescriptorTest {
 
     @Test
     public void equals() {

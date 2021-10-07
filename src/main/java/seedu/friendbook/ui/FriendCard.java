@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Friend}.
  */
 public class FriendCard extends UiPart<Region> {
 
@@ -24,7 +24,7 @@ public class FriendCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Friend friend;
 
     @FXML
     private HBox cardPane;
@@ -43,17 +43,18 @@ public class FriendCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code FriendCode} with the given {@code Friend} and
+     * index to display.
      */
-    public FriendCard(Person person, int displayedIndex) {
+    public FriendCard(Friend friend, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.friend = friend;
         //id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(friend.getName().fullName);
+        phone.setText(friend.getPhone().value);
+        address.setText(friend.getAddress().value);
+        email.setText(friend.getEmail().value);
+        friend.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName + "\t")));
     }
@@ -73,6 +74,6 @@ public class FriendCard extends UiPart<Region> {
         // state check
         FriendCard card = (FriendCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && friend.equals(card.friend);
     }
 }

@@ -7,7 +7,7 @@ import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.friendbook.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.friendbook.model.Model.PREDICATE_SHOW_ALL_FRIENDS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,24 +20,19 @@ import seedu.friendbook.commons.core.index.Index;
 import seedu.friendbook.commons.util.CollectionUtil;
 import seedu.friendbook.logic.commands.exceptions.CommandException;
 import seedu.friendbook.model.Model;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Birthday;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.*;
 import seedu.friendbook.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing person in the friend book.
+ * Edits the details of an existing friend in the friend book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the friend identified "
+            + "by the index number used in the displayed friend list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -50,16 +45,16 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the friend book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This friend already exists in the friend book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the friend in the filtered friend list to edit
+     * @param editPersonDescriptor details to edit the friend with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -72,39 +67,39 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Friend> lastShownList = model.getFilteredFriendList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FRIEND_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Friend friendToEdit = lastShownList.get(index.getZeroBased());
+        Friend editedFriend = createEditedPerson(friendToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!friendToEdit.isSameFriend(editedFriend) && model.hasFriend(editedFriend)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setFriend(friendToEdit, editedFriend);
+        model.updateFilteredFriendList(PREDICATE_SHOW_ALL_FRIENDS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFriend));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Friend} with the details of {@code friendToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Friend createEditedPerson(Friend friendToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert friendToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
+        Name updatedName = editPersonDescriptor.getName().orElse(friendToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(friendToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(friendToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(friendToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(friendToEdit.getTags());
+        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(friendToEdit.getBirthday());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedBirthday);
+        return new Friend(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedBirthday);
     }
 
     @Override
@@ -126,8 +121,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the friend with. Each non-empty field value will replace the
+     * corresponding field value of the friend.
      */
     public static class EditPersonDescriptor {
         private Name name;

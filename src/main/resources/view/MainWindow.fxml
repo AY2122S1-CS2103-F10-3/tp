@@ -58,11 +58,11 @@
 
 
                   <HBox alignment="CENTER" spacing="30.0" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-                      <!--       container for person list         -->
+                      <!--       container for friend list         -->
                 <VBox fx:id="friendContainer" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                            <Label text="My Friend List" />
 
-                        <!--        placeholder to display person list          -->
+                        <!--        placeholder to display friend list          -->
                   <StackPane fx:id="friendListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            <padding>
                               <Insets bottom="10.0" left="10.0" />

@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.friendbook.logic.parser.exceptions.ParseException;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Birthday;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.Address;
+import seedu.friendbook.model.friend.Birthday;
+import seedu.friendbook.model.friend.Email;
+import seedu.friendbook.model.friend.Name;
+import seedu.friendbook.model.friend.Phone;
 import seedu.friendbook.model.tag.Tag;
 
 public class ParserUtilTest {

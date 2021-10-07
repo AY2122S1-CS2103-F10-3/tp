@@ -1,7 +1,7 @@
 package seedu.friendbook.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.friendbook.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.friendbook.commons.core.Messages.MESSAGE_INVALID_FRIEND_DISPLAYED_INDEX;
 import static seedu.friendbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.friendbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.friendbook.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
@@ -27,7 +27,7 @@ import seedu.friendbook.model.Model;
 import seedu.friendbook.model.ModelManager;
 import seedu.friendbook.model.ReadOnlyFriendBook;
 import seedu.friendbook.model.UserPrefs;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 import seedu.friendbook.storage.JsonFriendBookStorage;
 import seedu.friendbook.storage.JsonUserPrefsStorage;
 import seedu.friendbook.storage.StorageManager;
@@ -60,7 +60,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand,
+                MESSAGE_INVALID_FRIEND_DISPLAYED_INDEX);
     }
 
     @Test
@@ -82,16 +83,16 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + BIRTHDAY_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Friend expectedFriend = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addFriend(expectedFriend);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFriendList().remove(0));
     }
 
     /**

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.friendbook.logic.commands.FindCommand;
 import seedu.friendbook.logic.parser.exceptions.ParseException;
-import seedu.friendbook.model.person.NameContainsKeywordsPredicate;
+import seedu.friendbook.model.friend.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

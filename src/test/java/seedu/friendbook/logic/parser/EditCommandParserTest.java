@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.friendbook.commons.core.index.Index;
 import seedu.friendbook.logic.commands.EditCommand;
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.Address;
+import seedu.friendbook.model.friend.Email;
+import seedu.friendbook.model.friend.Name;
+import seedu.friendbook.model.friend.Phone;
 import seedu.friendbook.model.tag.Tag;
 import seedu.friendbook.testutil.EditPersonDescriptorBuilder;
 
@@ -95,7 +95,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Friend} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);

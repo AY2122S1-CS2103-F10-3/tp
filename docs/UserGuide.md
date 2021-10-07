@@ -26,10 +26,10 @@ Command Pop up
 
 #### Contacts
 ##### Adding a contact: add
---- Adds a person to the address book.
+--- Adds a friend to the address book.
 Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [tele/TELE_USERNAME] [b/BIRTHDAY(dd/mm)]...`
 
- :bulb: Tip: A person can have any number of tags (including 0)
+ :bulb: Tip: A friend can have any number of tags (including 0)
  :bulb: Tip: The telegram username, and the birthday fields are optional. The birthday field has to be specified in    dd/mm format.
 - When adding contacts to the friend book, the user can specify any number of tags he/she chooses to be tagged to the individual (see examples 1 and 2 below)
 
@@ -48,18 +48,18 @@ Format: list
 Edits an existing contact in the address book.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [tele/TELE_USERNAME] [b/BIRTHDAY(dd/mm)]...`
 
-- Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+- Edits the friend at the specified INDEX. The index refers to the index number shown in the displayed friend list. The index must be a positive integer 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When updating an existing contact’s tag, the user has to input all existing tags AND the new tag(s) to be added (see example 3 below)
-- You can remove all the person’s tags by typing t/ without specifying any tags after it (see example 4)
+- You can remove all the friend’s tags by typing t/ without specifying any tags after it (see example 4)
 - When editing the telegram username the old value is replaced by the new value, if one is provided. The telegram username for a contact can be removed by typing just tele/ without specifying any tele username. 
 
 ##### Examples:
 1. `edit 1 p/91234567 e/johndoe@example.com` 
-This edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
+This edits the phone number and email address of the 1st friend to be 91234567 and johndoe@example.com respectively.
 2. `edit 2 n/Betsy Crower t/ tele/`
-Edits the name of the 2nd person to be Betsy Crower, clears all existing tags, and removes the associated telegram username.
+Edits the name of the 2nd friend to be Betsy Crower, clears all existing tags, and removes the associated telegram username.
 3. `edit 1 t/friend t/NUS t/basketball` 
 adds a ‘basketball’ tag to an individual with an existing ‘friend’ and ‘NUS’ tag
 4. `edit 1 t/` 

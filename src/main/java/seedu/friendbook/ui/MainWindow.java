@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        friendListPanel = new FriendListPanel(logic.getFilteredPersonList());
+        friendListPanel = new FriendListPanel(logic.getFilteredFriendList());
         friendListPanelPlaceholder.getChildren().add(friendListPanel.getRoot());
 
         //TODO: SHIFT RESULT DISPLAY TO FOOTER OF UI
@@ -143,7 +143,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // for Birthday view
         // TODO: UPDATE INPUT FOR BIRTHDAYLISTPANEL
-        birthdayListPanel = new BirthdayListPanel(logic.getFilteredPersonList());
+        birthdayListPanel = new BirthdayListPanel(logic.getFilteredFriendList());
         birthdayListPanelPlaceholder.getChildren().add(birthdayListPanel.getRoot());
 
     }
@@ -188,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public FriendListPanel getPersonListPanel() {
+    public FriendListPanel getFriendListPanel() {
         return friendListPanel;
     }
 

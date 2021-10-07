@@ -1,4 +1,4 @@
-package seedu.friendbook.model.person;
+package seedu.friendbook.model.friend;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

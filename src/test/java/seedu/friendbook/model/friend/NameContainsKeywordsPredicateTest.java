@@ -1,4 +1,4 @@
-package seedu.friendbook.model.person;
+package seedu.friendbook.model.friend;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different friend -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

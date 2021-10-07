@@ -23,8 +23,8 @@ import seedu.friendbook.logic.commands.FindCommand;
 import seedu.friendbook.logic.commands.HelpCommand;
 import seedu.friendbook.logic.commands.ListCommand;
 import seedu.friendbook.logic.parser.exceptions.ParseException;
-import seedu.friendbook.model.person.NameContainsKeywordsPredicate;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.NameContainsKeywordsPredicate;
+import seedu.friendbook.model.friend.Friend;
 import seedu.friendbook.testutil.EditPersonDescriptorBuilder;
 import seedu.friendbook.testutil.PersonBuilder;
 import seedu.friendbook.testutil.PersonUtil;
@@ -35,9 +35,9 @@ public class FriendBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Friend friend = new PersonBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(friend));
+        assertEquals(new AddCommand(friend), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class FriendBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Friend friend = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(friend).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

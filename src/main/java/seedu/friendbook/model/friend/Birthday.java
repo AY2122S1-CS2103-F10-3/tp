@@ -1,4 +1,4 @@
-package seedu.friendbook.model.person;
+package seedu.friendbook.model.friend;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.friendbook.commons.util.AppUtil.checkArgument;

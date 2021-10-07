@@ -8,40 +8,40 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.friendbook.commons.core.LogsCenter;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of friends.
  */
 public class FriendListPanel extends UiPart<Region> {
     private static final String FXML = "FriendListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FriendListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Friend> friendListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FriendListPanel} with the given {@code ObservableList}.
      */
-    public FriendListPanel(ObservableList<Person> personList) {
+    public FriendListPanel(ObservableList<Friend> friendList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        friendListView.setItems(friendList);
+        friendListView.setCellFactory(listView -> new FriendListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Friend} using a {@code FriendCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class FriendListViewCell extends ListCell<Friend> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Friend friend, boolean empty) {
+            super.updateItem(friend, empty);
 
-            if (empty || person == null) {
+            if (empty || friend == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FriendCard(person, getIndex() + 1).getRoot());
+                setGraphic(new FriendCard(friend, getIndex() + 1).getRoot());
             }
         }
     }

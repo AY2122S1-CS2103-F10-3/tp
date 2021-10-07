@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.friendbook.commons.exceptions.IllegalValueException;
 import seedu.friendbook.model.FriendBook;
 import seedu.friendbook.model.ReadOnlyFriendBook;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * An Immutable FriendBook that is serializable to JSON format.
@@ -19,15 +19,15 @@ import seedu.friendbook.model.person.Person;
 @JsonRootName(value = "friendbook")
 class JsonSerializableFriendBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate friend(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedFriend> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFriendBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableFriendBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableFriendBook(@JsonProperty("persons") List<JsonAdaptedFriend> persons) {
         this.persons.addAll(persons);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableFriendBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableFriendBook}.
      */
     public JsonSerializableFriendBook(ReadOnlyFriendBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getFriendList().stream().map(JsonAdaptedFriend::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableFriendBook {
      */
     public FriendBook toModelType() throws IllegalValueException {
         FriendBook friendBook = new FriendBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (friendBook.hasPerson(person)) {
+        for (JsonAdaptedFriend jsonAdaptedFriend : persons) {
+            Friend friend = jsonAdaptedFriend.toModelType();
+            if (friendBook.hasFriend(friend)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            friendBook.addPerson(person);
+            friendBook.addFriend(friend);
         }
         return friendBook;
     }

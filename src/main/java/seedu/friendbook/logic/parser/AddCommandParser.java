@@ -13,12 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.friendbook.logic.commands.AddCommand;
 import seedu.friendbook.logic.parser.exceptions.ParseException;
-import seedu.friendbook.model.person.Address;
-import seedu.friendbook.model.person.Birthday;
-import seedu.friendbook.model.person.Email;
-import seedu.friendbook.model.person.Name;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.friend.*;
 import seedu.friendbook.model.tag.Tag;
 
 
@@ -49,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList, birthday);
+        Friend friend = new Friend(name, phone, email, address, tagList, birthday);
 
-        return new AddCommand(person);
+        return new AddCommand(friend);
     }
 
     /**

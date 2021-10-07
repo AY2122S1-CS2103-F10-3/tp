@@ -11,33 +11,33 @@ import java.util.Set;
 
 import seedu.friendbook.logic.commands.AddCommand;
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 import seedu.friendbook.model.tag.Tag;
 
 
 /**
- * A utility class for Person.
+ * A utility class for Friend.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code friend}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Friend friend) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(friend);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code friend}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Friend friend) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + friend.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + friend.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + friend.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + friend.getAddress().value + " ");
+        sb.append(PREFIX_BIRTHDAY + friend.getBirthday().value + " ");
+        friend.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

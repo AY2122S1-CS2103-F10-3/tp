@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.friendbook.model.person.Person;
-import seedu.friendbook.model.person.UniquePersonList;
+import seedu.friendbook.model.friend.Friend;
+import seedu.friendbook.model.friend.UniqueFriendList;
 
 /**
  * Wraps all data at the friend-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameFriend comparison)
  */
 public class FriendBook implements ReadOnlyFriendBook {
 
-    private final UniquePersonList persons;
+    private final UniqueFriendList friends;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class FriendBook implements ReadOnlyFriendBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        friends = new UniqueFriendList();
     }
 
     public FriendBook() {}
 
     /**
-     * Creates a FriendBook using the Persons in the {@code toBeCopied}
+     * Creates a FriendBook using the Friends in the {@code toBeCopied}
      */
     public FriendBook(ReadOnlyFriendBook toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class FriendBook implements ReadOnlyFriendBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the friend list with {@code friends}.
+     * {@code friends} must not contain duplicate friends.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setFriends(List<Friend> friends) {
+        this.friends.setFriends(friends);
     }
 
     /**
@@ -53,68 +53,68 @@ public class FriendBook implements ReadOnlyFriendBook {
     public void resetData(ReadOnlyFriendBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setFriends(newData.getFriendList());
     }
 
-    //// person-level operations
+    //// friend-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the friend book.
+     * Returns true if a friend with the same identity as {@code friend} exists in the friend book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasFriend(Friend friend) {
+        requireNonNull(friend);
+        return friends.contains(friend);
     }
 
     /**
-     * Adds a person to the friend book.
-     * The person must not already exist in the friend book.
+     * Adds a friend to the friend book.
+     * The friend must not already exist in the friend book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addFriend(Friend p) {
+        friends.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given friend {@code target} in the list with {@code editedFriend}.
      * {@code target} must exist in the friend book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the friend book.
+     * The friend identity of {@code editedFriend} must not be the same as another existing friend in the friend book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setFriend(Friend target, Friend editedFriend) {
+        requireNonNull(editedFriend);
 
-        persons.setPerson(target, editedPerson);
+        friends.setFriend(target, editedFriend);
     }
 
     /**
      * Removes {@code key} from this {@code FriendBook}.
      * {@code key} must exist in the friend book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeFriend(Friend key) {
+        friends.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return friends.asUnmodifiableObservableList().size() + " friends";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Friend> getFriendList() {
+        return friends.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FriendBook // instanceof handles nulls
-                && persons.equals(((FriendBook) other).persons));
+                && friends.equals(((FriendBook) other).friends));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return friends.hashCode();
     }
 }

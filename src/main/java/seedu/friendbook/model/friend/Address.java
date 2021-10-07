@@ -1,10 +1,10 @@
-package seedu.friendbook.model.person;
+package seedu.friendbook.model.friend;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.friendbook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the friend book.
+ * Represents a Friend's address in the friend book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

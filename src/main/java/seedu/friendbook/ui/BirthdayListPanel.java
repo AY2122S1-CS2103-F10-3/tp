@@ -3,12 +3,11 @@ package seedu.friendbook.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.friendbook.commons.core.LogsCenter;
-import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.friend.Friend;
 
 /**
  * Panel containing the list of friends' birthdays.
@@ -19,30 +18,30 @@ public class BirthdayListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(FriendListPanel.class);
 
     @javafx.fxml.FXML
-    private ListView<Person> birthdayListView;
+    private ListView<Friend> birthdayListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FriendListPanel} with the given {@code ObservableList}.
      */
-    public BirthdayListPanel(ObservableList<Person> personList) {
+    public BirthdayListPanel(ObservableList<Friend> friendList) {
         super(FXML);
-        birthdayListView.setItems(personList);
+        birthdayListView.setItems(friendList);
         birthdayListView.setCellFactory(listView -> new BirthdayListPanel.BirthdayListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Friend} using a {@code FriendCard}.
      */
-    class BirthdayListViewCell extends ListCell<Person> {
+    class BirthdayListViewCell extends ListCell<Friend> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Friend friend, boolean empty) {
+            super.updateItem(friend, empty);
 
-            if (empty || person == null) {
+            if (empty || friend == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new BirthdayCard(person, getIndex() + 1).getRoot());
+                setGraphic(new BirthdayCard(friend, getIndex() + 1).getRoot());
             }
         }
     }
