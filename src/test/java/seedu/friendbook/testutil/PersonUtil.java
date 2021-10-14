@@ -1,14 +1,19 @@
 package seedu.friendbook.testutil;
 
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
+
 import java.util.Set;
 
 import seedu.friendbook.logic.commands.AddCommand;
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.friendbook.model.person.Person;
 import seedu.friendbook.model.tag.Tag;
-
-import static seedu.friendbook.logic.parser.CliSyntax.*;
-
 
 /**
  * A utility class for Person.

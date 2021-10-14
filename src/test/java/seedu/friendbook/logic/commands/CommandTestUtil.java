@@ -2,7 +2,13 @@ package seedu.friendbook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.friendbook.logic.parser.CliSyntax.*;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.friendbook.logic.parser.CliSyntax.PREFIX_TELEHANDLE;
 import static seedu.friendbook.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

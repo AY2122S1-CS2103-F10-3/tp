@@ -128,9 +128,9 @@ public class Person {
                 .append(getAddress())
                 .append("; Birthday: ")
                 .append(getBirthday());
-
-
-        if (getTeleHandle().isSet()) { builder.append("; Tele Handle: ").append(getTeleHandle()); }
+        if (getTeleHandle().isSet()) {
+            builder.append("; Tele Handle: ").append(getTeleHandle());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

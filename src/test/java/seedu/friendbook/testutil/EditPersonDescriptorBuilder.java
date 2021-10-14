@@ -5,7 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.friendbook.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.friendbook.model.person.*;
+import seedu.friendbook.model.person.Address;
+import seedu.friendbook.model.person.Birthday;
+import seedu.friendbook.model.person.Email;
+import seedu.friendbook.model.person.Name;
+import seedu.friendbook.model.person.Person;
+import seedu.friendbook.model.person.Phone;
+import seedu.friendbook.model.person.TeleHandle;
 import seedu.friendbook.model.tag.Tag;
 
 /**
